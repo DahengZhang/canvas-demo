@@ -78,34 +78,23 @@ export default {
       const height = img.height
       const canvas = document.createElement('canvas')
       const ctx = canvas.getContext('2d')
+      canvas.width = width
+      canvas.height = height
 
-      if (rotate === 0) {
-        canvas.width = width
-        canvas.height = height
-        ctx.drawImage(img, 0, 0, width, height, 0, 0, width, height)
-      }
-
-      if (rotate === 180) {
-        canvas.width = width
-        canvas.height = height
-        ctx.translate(width/2, height/2)
-        ctx.rotate(rotate*Math.PI/180)
-        ctx.drawImage(img, 0, 0, width, height, -canvas.width/2, -canvas.height/2, width, height)
-      }
-
-      if (rotate === 90) {
+      if (rotate === 90 || rotate === 270) {
         canvas.width = width > height ? width : height
         canvas.height = width > height ? width : height
-        ctx.translate(width/2, height/2)
-        ctx.rotate(rotate*Math.PI/180)
+      }
+
+      ctx.translate(width/2, height/2)
+      ctx.rotate(rotate*Math.PI/180)
+      ctx.drawImage(img, 0, 0, width, height, -canvas.width/2, -canvas.height/2, width, height)
+
+      if (rotate === 90) {
         ctx.drawImage(img, 0, 0, width, height, -canvas.width/2+(width-height)/2, -canvas.height/2, width, height)
       }
 
       if (rotate === 270) {
-        canvas.width = width > height ? width : height
-        canvas.height = width > height ? width : height
-        ctx.translate(width/2, height/2)
-        ctx.rotate(rotate*Math.PI/180)
         ctx.drawImage(img, 0, 0, width, height, -canvas.width/2+(height-width)/2, -canvas.height/2, width, height)
       }
 
@@ -126,34 +115,27 @@ export default {
       const height = img.height
       const canvas = document.createElement('canvas')
       const ctx = canvas.getContext('2d')
+      canvas.width = width
+      canvas.height = height
 
-      if (rotate === 0) {
-        canvas.width = width
-        canvas.height = height
-        ctx.drawImage(img, 0, 0, width, height, 0, 0, width, height)
-      }
-
-      if (rotate === 180) {
-        canvas.width = width
-        canvas.height = height
-        ctx.translate(width/2, height/2)
-        ctx.rotate(rotate*Math.PI/180)
-        ctx.drawImage(img, 0, 0, width, height, -canvas.width/2, -canvas.height/2, width, height)
-      }
-
-      if (rotate === 90) {
+      if (rotate === 90 || rotate === 270) {
         canvas.width = width > height ? width : height
         canvas.height = width > height ? width : height
-        ctx.translate(width/2, height/2)
-        ctx.rotate(rotate*Math.PI/180)
+      }
+
+      ctx.translate(width/2, height/2)
+      ctx.rotate(rotate*Math.PI/180)
+
+      let canvasStartX = -canvas.width/2;
+      let canvasStartY = -canvas.height/2;
+
+      ctx.drawImage(img, 0, 0, width, height, canvasStartX, canvasStartY, width, height)
+
+      if (rotate === 90) {
         ctx.drawImage(img, 0, 0, width, height, -canvas.width/2, -canvas.height/2+(width-height)/2, width, height)
       }
 
       if (rotate === 270) {
-        canvas.width = width > height ? width : height
-        canvas.height = width > height ? width : height
-        ctx.translate(width/2, height/2)
-        ctx.rotate(rotate*Math.PI/180)
         ctx.drawImage(img, 0, 0, width, height, -canvas.width/2, -canvas.height/2+(height-width)/2, width, height)
       }
 
